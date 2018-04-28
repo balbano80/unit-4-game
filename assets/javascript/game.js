@@ -1,106 +1,173 @@
 
+var user;
+var enemy;
+var sarahBtn;
+var jaredBtn;
+var hoggleBtn;
+var blutoBtn;
+var fireGangBtn;
+var userChosen = false;
+var enemyChosen = false;
+var btnArr =[];
 
-// var characterArr =[  
-    var sarah ={ 
+
+var characterArr =[  
+     obj1 ={
+        name: "Sarah",  
         hp: 100,
         ap: 10,
         cap: 20,
         image: "assets/images/sarah.jpg"
-    }
+    },
 
-    var jareth = {
+     obj2 = {
+        name: "Jareth",
         hp: 150,
         ap: 15,
         cap: 25,
         image: "../images/jareth.jpg"
-    }
+    },
 
-    var hoggle = {
+    obj3 = {
+        name: "Hoggle",
         hp: 90,
         ap: 11,
         cap: 21,
         image: "../images/hoggle.jpg"
-    }
+    },
 
-    var bluto = {
+    obj4 = {
+        name: "Bluto",
         hp: 140,
         ap: 14,
         cap: 23,
         image: "../images/bluto.jpg"
-    }
+    },
 
-    var fireGang = {
+    obj5 = {
+        name: "Fire Gange",
         hp: 120,
         ap: 12,
         cap: 22,
         image: "../images/fireGang.jpg"
     }
 
-// ];
-var user;
-var enemy;
+];
 
 $(document).ready(function() {
 
-    var sarahBtn = $("<button>");
+
+    sarahBtn = $("<img>");
     sarahBtn.addClass("characterBtn");
-    sarahBtn.addClass("sarahBg");
-    sarahBtn.attr("hp", sarah.hp);
-    sarahBtn.attr("ap", sarah.ap);
-    sarahBtn.attr("cap", sarah.cap);
+    sarahBtn.attr("hp", obj1.hp);
+    sarahBtn.attr("ap", obj1.ap);
+    sarahBtn.attr("cap", obj1.cap);
+    sarahBtn.attr("src", "assets/images/sarah.jpg");
     $("#characters").append(sarahBtn);
+    btnArr.push(sarahBtn);
 
-    var jarethBtn = $("<button>");
+    jarethBtn = $("<img>");
     jarethBtn.addClass("characterBtn");
-    jarethBtn.addClass("jarethBg");
-    jarethBtn.attr("hp", jareth.hp);
-    jarethBtn.attr("ap", jareth.ap);
-    sarahBtn.attr("cap", jareth.cap);
+    jarethBtn.attr("hp", obj2.hp);
+    jarethBtn.attr("ap", obj2.ap);
+    sarahBtn.attr("cap", obj2.cap);
+    jarethBtn.attr("src", "assets/images/jareth2.jpg");
     $("#characters").append(jarethBtn);
+    btnArr.push(jarethBtn);
 
-    var hoggleBtn = $("<button>");
+    hoggleBtn = $("<img>");
     hoggleBtn.addClass("characterBtn");
-    hoggleBtn.addClass("hoggleBg");
-    hoggleBtn.attr("hp", hoggle.hp);
-    hoggleBtn.attr("ap", hoggle.ap);
-    hoggleBtn.attr("cap", hoggle.cap);
+    hoggleBtn.attr("hp", obj3.hp);
+    hoggleBtn.attr("ap", obj3.ap);
+    hoggleBtn.attr("cap", obj3.cap);
+    hoggleBtn.attr("src", "assets/images/hoggle2.jpg");
     $("#characters").append(hoggleBtn);
+    btnArr.push(hoggleBtn);
 
-    var jarethBtn = $("<button>");
-    jarethBtn.addClass("characterBtn");
-    jarethBtn.addClass("blutoBg");
-    jarethBtn.attr("hp", jareth.hp);
-    jarethBtn.attr("ap", jareth.ap);
-    sarahBtn.attr("cap", jareth.cap);
-    $("#characters").append(jarethBtn);
+    blutoBtn = $("<img>");
+    blutoBtn.addClass("characterBtn");
+    blutoBtn.attr("hp", obj4.hp);
+    blutoBtn.attr("ap", obj4.ap);
+    blutoBtn.attr("cap", obj4.cap);
+    blutoBtn.attr("src", "assets/images/bluto2.jpg");
+    $("#characters").append(blutoBtn);
+    btnArr.push(blutoBtn);
 
-    var jarethBtn = $("<button>");
-    jarethBtn.addClass("characterBtn");
-    jarethBtn.addClass("fireGangBg");
-    jarethBtn.attr("hp", jareth.hp);
-    jarethBtn.attr("ap", jareth.ap);
-    sarahBtn.attr("cap", jareth.cap);
-    $("#characters").append(jarethBtn);
+    fireGangBtn = $("<img>");
+    fireGangBtn.addClass("characterBtn");
+    fireGangBtn.attr("hp", obj5.hp);
+    fireGangBtn.attr("ap", obj5.ap);
+    fireGangBtn.attr("cap", obj5.cap);
+    fireGangBtn.attr("src", "assets/images/fireGang2.jpg");
+    $("#characters").append(fireGangBtn);
+    btnArr.push(fireGangBtn);
 
     function reset(){
-        for(var i =0; i < characterArr.length; i++){
-            var characterButton = $("<button>");
-            characterButton.addClass("characterBtn");
-            characterButton.text(this.healthPoints);
-            characterButton.html(this.image);
-            $("#characters").append(characterButton);
-            console.log(characterButton);
+        // for(var i =0; i < characterArr.length; i++){
+        //     var characterBtn = $("<button>");
 
-        }
-
+        //     characterBtn.addClass("characterBtn");
+        //     characterBtn.attr("hp", characterArr[i].hp);
+        //     characterBtn.attr("ap", characterArr[i].ap);
+        //     characterBtn.attr("cap", characterArr[i].cap);
+        //     $("#characters").append(characterBtn);
+        //     console.log(characterBtn);
+        // } Try to find a way to create buttons with loop
+        sarahBtn = $("<button>");
+        sarahBtn.addClass("characterBtn sarah sarahBg");
+        sarahBtn.attr("hp", sarah.hp);
+        sarahBtn.attr("ap", sarah.ap);
+        sarahBtn.attr("cap", sarah.cap);
+        $("#characters").append(sarahBtn);
+    
+        jarethBtn = $("<button>");
+        jarethBtn.addClass("characterBtn jareth jarethBg");
+        jarethBtn.attr("hp", jareth.hp);
+        jarethBtn.attr("ap", jareth.ap);
+        sarahBtn.attr("cap", jareth.cap);
+        $("#characters").append(jarethBtn);
+    
+        hoggleBtn = $("<button>");
+        hoggleBtn.addClass("characterBtn hoggle hoggleBg");
+        hoggleBtn.attr("hp", hoggle.hp);
+        hoggleBtn.attr("ap", hoggle.ap);
+        hoggleBtn.attr("cap", hoggle.cap);
+        $("#characters").append(hoggleBtn);
+    
+        blutoBtn = $("<button>");
+        blutoBtn.addClass("characterBtn bluto blutoBg");
+        blutoBtn.attr("hp", bluto.hp);
+        blutoBtn.attr("ap", bluto.ap);
+        blutoBtn.attr("cap", bluto.cap);
+        $("#characters").append(blutoBtn);
+    
+        fireGangBtn = $("<button>");
+        fireGangBtn.addClass("characterBtn fireGang fireGangBg");
+        fireGangBtn.attr("hp", fireGang.hp);
+        fireGangBtn.attr("ap", fireGang.ap);
+        fireGangBtn.attr("cap", fireGang.cap);
+        $("#characters").append(fireGangBtn);
 
         $("#yourCharacter, #enemies, #opponent, #message").empty();       
     
     }
 
-    function characterSelect(){
-
-    } // will make clicked character to be user character and move it to your character div
+    function characterSelect(userChosen, enemyChosen){
+        if(userChosen && enemyChosen){
+            return;
+        }
+        else if (!userChosen){
+            user = this;
+            $("#yourCharacter").append(user);
+            userChosen = true;
+            console.log()
+        }
+        else if(userChosen){
+            enemy = this;
+            $("#opponent").append(enemy);
+            enemyChosen = true;
+        }
+    } // will make clicked character to be user character and move it to yourCharacter div and move rest of characters move to Enemies div
     
     function enemySelect(){
     
@@ -117,10 +184,44 @@ $(document).ready(function() {
     
     }// will 
 
+    console.log(userChosen);
 
 
-    $("").on("click", function() {
+    $(".characterBtn").on("click", function() {
 
+        // characterSelect(userChosen, enemyChosen);
+        if(userChosen && enemyChosen){
+            return;
+        }
+        else if(!userChosen){
+            user = this;
+            $("#yourCharacter").append(this);
+            var baseAp = parseInt($("#yourCharacter img").attr("ap"));
+            userChosen = true;
+            console.log(this);
+        }
+        else if(userChosen){
+            enemy = this;
+            $("#opponent").append(this);
+            enemyChosen = true;
+            $("#characters").appendTo("#enemies");
+            console.log(this);
+            var fightBtn = $("<button>");
+            fightBtn.text("Attack");
+            $("#fightSection").append(fightBtn);
+        }
+
+        $("#fightSection button").on("click", function() {
+            console.log("fight btn hit");
+            var opponentHP = parseInt($("#opponent img").attr("hp") - parseInt($("#yourCharacter img").attr("ap")));
+            $("#opponent img").attr("hp", opponentHP);
+            console.log($("#opponent img").attr("hp"));
+            var newAp = (parseInt($("#yourCharacter img").attr("ap")) + baseAp);
+            //need to work on this(+= ap of user character)
+            $("#yourCharacter img").attr("ap", newAp);
+            console.log(newAp);
+            $("#yourcHaracter img").attr("ap", "newApp");
+        })
 
     })
 
