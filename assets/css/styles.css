@@ -8,9 +8,56 @@ body{
     -o-background-size: cover;
 }
 
+.header{
+    height: 150px;;
+}
 h1{
     color:#ffd780;
     /* color: #ffcf66; */
-    font-size: 70px;
-    text-shadow: -5px 1px #bf8040;
+    font-size: 80px;
+    text-shadow: -5px 1px #734d26;
+}
+
+h2{
+    color:#ffd780;
+}
+
+.characters{
+    height: 50px;
+}
+
+.characterBtn{
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    padding: 2px;
+    float: left;
+    margin: 2px;
+    text-align: center;
+    color:black;
+}
+
+.sarahBg{
+    position: relative;
+    background: url(../images/sarah.png);
+}
+
+.jarethBg{
+    position: relative;
+    background: url(../images/jareth.jpg);
+}
+
+.blutoBg{
+    position: relative;
+    background: url(../images/bluto.jpg);
+}
+
+.hoggleBg{
+    position: relative;
+    background: url(../images/hoggle.jpg);
+}
+
+.fireGangBg{
+    position: relative;
+    background: url(../images/fireGang.jpg) ;
 }
