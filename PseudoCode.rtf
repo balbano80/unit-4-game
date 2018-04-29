@@ -1,0 +1,43 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 1. x# of character objects\
+	a. each has below attributes:\
+		1. health-points\
+		2. attack-power\
+		3. counter-attack-power\
+\
+2. User selects a character\
+	a. make selected character be user character\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 	b. remove selected user character from character choice field\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 	c. move selected user character to user character field on page\
+\
+3. User selects an opponent\
+	a. make selected opponent character be opponent character\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 	b. remove selected opponent character from character choice field\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 	c. move selected opponent character to opponent character field on page\
+\
+4. User hits attack button\
+	a. opponents health-points drops by user attack-power\
+	b. user character health-points drops by opponents counter-attack-power\
+	c. user character attack-power increases by base power\
+\
+5. If opponent health-points reaches 0, opponent \'93dies\'94 and user chooses a different opponent\
+	a. repeat from step 3\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 6. If user health-points reaches 0, user loses\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+7. If there are no more opponents, user wins\
+\
+	\
+	}

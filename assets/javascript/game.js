@@ -9,7 +9,7 @@ var fireGangBtn;
 var userChosen = false;
 var enemyChosen = false;
 var btnArr =[];
-
+var baseAp;
 
 var characterArr =[  
      obj1 ={
@@ -196,32 +196,39 @@ $(document).ready(function() {
         else if(!userChosen){
             user = this;
             $("#yourCharacter").append(this);
-            var baseAp = parseInt($("#yourCharacter img").attr("ap"));
+            baseAp = parseInt($("#yourCharacter img").attr("ap"));
             userChosen = true;
-            console.log(this);
         }
         else if(userChosen){
             enemy = this;
             $("#opponent").append(this);
             enemyChosen = true;
             $("#characters").appendTo("#enemies");
-            console.log(this);
             var fightBtn = $("<button>");
             fightBtn.text("Attack");
             $("#fightSection").append(fightBtn);
-        }
+        }   /// need to have a fight button created but hidden and only displayed when opponent is selected
 
         $("#fightSection button").on("click", function() {
             console.log("fight btn hit");
             var opponentHP = parseInt($("#opponent img").attr("hp") - parseInt($("#yourCharacter img").attr("ap")));
             $("#opponent img").attr("hp", opponentHP);
-            console.log($("#opponent img").attr("hp"));
+            console.log("opponent HP: " + opponentHP);
             var newAp = (parseInt($("#yourCharacter img").attr("ap")) + baseAp);
-            //need to work on this(+= ap of user character)
             $("#yourCharacter img").attr("ap", newAp);
-            console.log(newAp);
-            $("#yourcHaracter img").attr("ap", "newApp");
+            console.log("newAp" + newAp);
+            $("#yourCharacter img").attr("ap", newAp);
+            if (opponentHP <= 0 && enemyChosen === true){
+                console.log("in clear opponent block");
+                $("#opponent").empty();
+                enemyChosen = false; 
+                return;  
+            }/// need to reset to opponent hp to the value of the new img that is selected
         })
+
+
+
+
 
     })
 
