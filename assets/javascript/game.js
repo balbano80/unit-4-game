@@ -1,8 +1,7 @@
-
 var user;
 var enemy;
 var sarahBtn;
-var jaredBtn;
+var jarethBtn;
 var hoggleBtn;
 var blutoBtn;
 var fireGangBtn;
@@ -10,45 +9,51 @@ var userChosen = false;
 var enemyChosen = false;
 var btnArr =[];
 var baseAp;
+var newAp;
+var counter = 0;
+var opponentHP;
+var userHp;
+
+var fightBtnbool = false;
 
 var characterArr =[  
      obj1 ={
         name: "Sarah",  
-        hp: 100,
-        ap: 10,
-        cap: 20,
+        hp: 50,
+        ap: 5,
+        cap: 7,
         image: "assets/images/sarah.jpg"
     },
 
      obj2 = {
         name: "Jareth",
-        hp: 150,
-        ap: 15,
-        cap: 25,
+        hp: 60,
+        ap: 8,
+        cap: 6,
         image: "../images/jareth.jpg"
     },
 
     obj3 = {
         name: "Hoggle",
-        hp: 90,
-        ap: 11,
-        cap: 21,
+        hp: 54,
+        ap: 4,
+        cap: 5,
         image: "../images/hoggle.jpg"
     },
 
     obj4 = {
         name: "Bluto",
-        hp: 140,
-        ap: 14,
-        cap: 23,
+        hp: 58,
+        ap: 7,
+        cap: 8,
         image: "../images/bluto.jpg"
     },
 
     obj5 = {
-        name: "Fire Gange",
-        hp: 120,
-        ap: 12,
-        cap: 22,
+        name: "Fire Gang",
+        hp: 52,
+        ap: 6,
+        cap: 7,
         image: "../images/fireGang.jpg"
     }
 
@@ -56,18 +61,25 @@ var characterArr =[
 
 $(document).ready(function() {
 
-
     sarahBtn = $("<img>");
     sarahBtn.addClass("characterBtn");
+    sarahBtn.attr("name", obj1.name);
     sarahBtn.attr("hp", obj1.hp);
     sarahBtn.attr("ap", obj1.ap);
     sarahBtn.attr("cap", obj1.cap);
     sarahBtn.attr("src", "assets/images/sarah.jpg");
+    sarahBtn.html("obj1.ap");
     $("#characters").append(sarahBtn);
     btnArr.push(sarahBtn);
 
+    var charHp = $("<p class='caption'>");
+    console.log($(sarahBtn).attr("hp"));
+    charHp.append($(sarahBtn).attr("hp"));
+    console.log(charHp);
+
     jarethBtn = $("<img>");
     jarethBtn.addClass("characterBtn");
+    jarethBtn.attr("name", obj2.name);
     jarethBtn.attr("hp", obj2.hp);
     jarethBtn.attr("ap", obj2.ap);
     sarahBtn.attr("cap", obj2.cap);
@@ -77,6 +89,7 @@ $(document).ready(function() {
 
     hoggleBtn = $("<img>");
     hoggleBtn.addClass("characterBtn");
+    hoggleBtn.attr("name", obj3.name);
     hoggleBtn.attr("hp", obj3.hp);
     hoggleBtn.attr("ap", obj3.ap);
     hoggleBtn.attr("cap", obj3.cap);
@@ -86,6 +99,7 @@ $(document).ready(function() {
 
     blutoBtn = $("<img>");
     blutoBtn.addClass("characterBtn");
+    blutoBtn.attr("name", obj4.name);
     blutoBtn.attr("hp", obj4.hp);
     blutoBtn.attr("ap", obj4.ap);
     blutoBtn.attr("cap", obj4.cap);
@@ -95,6 +109,7 @@ $(document).ready(function() {
 
     fireGangBtn = $("<img>");
     fireGangBtn.addClass("characterBtn");
+    fireGangBtn.attr("name", obj5.name);
     fireGangBtn.attr("hp", obj5.hp);
     fireGangBtn.attr("ap", obj5.ap);
     fireGangBtn.attr("cap", obj5.cap);
@@ -184,9 +199,6 @@ $(document).ready(function() {
     
     }// will 
 
-    console.log(userChosen);
-
-
     $(".characterBtn").on("click", function() {
 
         // characterSelect(userChosen, enemyChosen);
@@ -194,41 +206,64 @@ $(document).ready(function() {
             return;
         }
         else if(!userChosen){
-            user = this;
             $("#yourCharacter").append(this);
+            user = ($("#yourCharacter img").attr("name"));
+            $("#message").html("You have chosen " + user + "!!!  Please select your opponent.");   
             baseAp = parseInt($("#yourCharacter img").attr("ap"));
             userChosen = true;
         }
         else if(userChosen){
-            enemy = this;
+
+            console.log(this);
             $("#opponent").append(this);
+            enemy = ($("#opponent img").attr("name"));
+            console.log(this);
+            counter++;
+            opponentHP = parseInt($("#opponent img").attr("hp"));
             enemyChosen = true;
             $("#characters").appendTo("#enemies");
-            var fightBtn = $("<button>");
-            fightBtn.text("Attack");
-            $("#fightSection").append(fightBtn);
-        }   /// need to have a fight button created but hidden and only displayed when opponent is selected
+            $("#message").html("You have chosen " + enemy + " as your enemy!!!  Please hit the attack button to start the fight.")
+            if(!fightBtnbool){
+                var fightBtn = $("<button>");
+                fightBtn.text("Attack");
+                $("#fightSection").append(fightBtn);
+                fightBtnbool = true;
+            }
+        } 
+        console.log("user chosen? " + userChosen);
+        console.log("enemy chosen?: " + enemyChosen)
+        if(userChosen && enemyChosen){
+            $("#fightSection button").on("click", function(){ 
+            // $(document).on("click", "#fightSection button", function(event){
+                $("#message").html("You attack " + enemy + " for " + ($("#yourCharacter img").attr("ap")) + "!!!  " +
+                 enemy + " counter attacks you for  " + ($("#opponent img").attr("cap")) + "!!!");
+                console.log($("#opponent img").attr("name") + " hp: " + $("#opponent img").attr("hp"));
+                opponentHP = parseInt($("#opponent img").attr("hp") - parseInt($("#yourCharacter img").attr("ap")));
+                $("#opponent img").attr("hp", opponentHP);
+                userHp = parseInt($("#yourCharacter img").attr("hp") - parseInt($("#opponent img").attr("cap")));
+                $("#yourCharacter img").attr("hp", userHp);
+                console.log("opponent hp after hit: " + opponentHP);
+                console.log("User hp: " + userHp);
+                newAp = (parseInt($("#yourCharacter img").attr("ap")) + baseAp);
+                $("#yourCharacter img").attr("ap", $("#yourCharacter img").attr("ap") + baseAp);
+                console.log("User newAp: " + newAp);
+                $("#yourCharacter img").attr("ap", newAp);
 
-        $("#fightSection button").on("click", function() {
-            console.log("fight btn hit");
-            var opponentHP = parseInt($("#opponent img").attr("hp") - parseInt($("#yourCharacter img").attr("ap")));
-            $("#opponent img").attr("hp", opponentHP);
-            console.log("opponent HP: " + opponentHP);
-            var newAp = (parseInt($("#yourCharacter img").attr("ap")) + baseAp);
-            $("#yourCharacter img").attr("ap", newAp);
-            console.log("newAp" + newAp);
-            $("#yourCharacter img").attr("ap", newAp);
-            if (opponentHP <= 0 && enemyChosen === true){
-                console.log("in clear opponent block");
-                $("#opponent").empty();
-                enemyChosen = false; 
-                return;  
-            }/// need to reset to opponent hp to the value of the new img that is selected
-        })
+                if (counter === btnArr.length - 1){
+                    $("#opponent").empty();
+                    $("#message").html("You have defeated all enemies!!!")
 
+                }
+                else if (opponentHP <= 0 && enemyChosen === true && counter !== btnArr.length){
+                    console.log("in clear opponent block");
+                    $("#message").html("You have defeated " + ($("#opponent img").attr("name")) + "!!!  Please select your next opponent.");       
+                    $("#opponent").empty();
+                    enemyChosen = false; 
+                    return;  
+                }
+            })
 
-
-
+        }
 
     })
 
