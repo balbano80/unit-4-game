@@ -7,7 +7,6 @@ var blutoBtn;
 var fireGangBtn;
 var userChosen = false;
 var enemyChosen = false;
-var btnArr =[];
 var baseAp;
 var newAp;
 var counter = 0;
@@ -70,7 +69,7 @@ $(document).ready(function() {
     sarahBtn.attr("src", "assets/images/sarah.jpg");
     sarahBtn.html("obj1.ap");
     $("#characters").append(sarahBtn);
-    btnArr.push(sarahBtn);
+
 
     // var charHp = $("<p class='caption'>");
     // console.log($(sarahBtn).attr("hp"));
@@ -85,7 +84,7 @@ $(document).ready(function() {
     jarethBtn.attr("data-cap", obj2.cap);
     jarethBtn.attr("src", "assets/images/jareth2.jpg");
     $("#characters").append(jarethBtn);
-    btnArr.push(jarethBtn);
+
 
     hoggleBtn = $("<img>");
     hoggleBtn.addClass("characterBtn");
@@ -95,7 +94,7 @@ $(document).ready(function() {
     hoggleBtn.attr("data-cap", obj3.cap);
     hoggleBtn.attr("src", "assets/images/hoggle2.jpg");
     $("#characters").append(hoggleBtn);
-    btnArr.push(hoggleBtn);
+
 
     blutoBtn = $("<img>");
     blutoBtn.addClass("characterBtn");
@@ -105,7 +104,7 @@ $(document).ready(function() {
     blutoBtn.attr("data-cap", obj4.cap);
     blutoBtn.attr("src", "assets/images/bluto2.jpg");
     $("#characters").append(blutoBtn);
-    btnArr.push(blutoBtn);
+
 
     fireGangBtn = $("<img>");
     fireGangBtn.addClass("characterBtn");
@@ -115,7 +114,7 @@ $(document).ready(function() {
     fireGangBtn.attr("data-cap", obj5.cap);
     fireGangBtn.attr("src", "assets/images/fireGang2.jpg");
     $("#characters").append(fireGangBtn);
-    btnArr.push(fireGangBtn);
+
 
     
 
@@ -170,44 +169,57 @@ $(document).ready(function() {
     // }
 
     // function characterSelect(userChosen, enemyChosen){
-    //     if(userChosen && enemyChosen){
-    //         return;
-    //     }
-    //     else if (!userChosen){
-    //         user = this;
-    //         $("#yourCharacter").append(user);
-    //         userChosen = true;
-    //         console.log()
-    //     }
-    //     else if(userChosen){
-    //         enemy = this;
-    //         $("#opponent").append(enemy);
-    //         enemyChosen = true;
-    //     }
-    // } // will make clicked character to be user character and move it to yourCharacter div and move rest of characters move to Enemies div
+    // }
     
-    // function enemySelect(){
-    
-    
+    // function enemySelect(){  
     // } // will make clicked character to be user enemy and move it to the enemy div
     
-    // function attack(){
+    function attack(){
+        console.log("in attack block");
+        $("#message").html("You attack " + enemy + " for " + ($("#yourCharacter img").attr("data-ap")) + "!!!  " +
+        enemy + " counter attacks you for  " + ($("#opponent img").attr("data-cap")) + "!!!");
+        console.log($("#opponent img").attr("data-name") + " hp: " + $("#opponent img").attr("data-hp"));
+        opponentHP = parseInt($("#opponent img").attr("data-hp") - parseInt($("#yourCharacter img").attr("data-ap")));
+        $("#opponent img").attr("data-hp", opponentHP);
+        userHp = parseInt($("#yourCharacter img").attr("data-hp") - parseInt($("#opponent img").attr("data-cap")));
+        $("#yourCharacter img").attr("data-hp", userHp);
+        console.log("opponent hp after hit: " + opponentHP);
+        console.log("User hp: " + userHp);
+        newAp = (parseInt($("#yourCharacter img").attr("data-ap")) + baseAp);
+        $("#yourCharacter img").attr("data-ap", $("#yourCharacter img").attr("data-ap") + baseAp);
+        console.log("User newAp: " + newAp);
+        $("#yourCharacter img").attr("data-ap", newAp);
+        checkHealth(); 
+    }
     
-    // } // will: 1. decrease opponents hit points
-    //         // 2. decrease users healthPoints by opponents counterAttackPower
-    //         // 3. update users attackPower by base power
-    
-    // function checkHealth(){
-    
-    // }// will 
+    function checkHealth(){
+        if(userHp <= 0){
+            console.log("in overall loss block")
+            $("#yourCharacter").empty();
+            $("#message").html("You have been defeated by " + enemy + "!!!")
+            return;
+        }
+        else if(counter === characterArr.length - 1){
+            console.log("in overall win block");
+            $("#opponent").empty();
+            $("#message").html("You have defeated all enemies!!!")
+            return;
+        }
+        else if (opponentHP <= 0){
+            console.log("in clear opponent block");
+            $("#message").html("You have defeated " + ($("#opponent img").attr("data-name")) + "!!!  Please select your next opponent.");       
+            $("#opponent").empty();
+            enemyChosen = false; 
+        } 
+    }
 
     $(".characterBtn").on("click", function() {
-
-        // characterSelect(userChosen, enemyChosen);
+        // charSelect();
         if(userChosen && enemyChosen){
             return;
         }
         else if(!userChosen){
+            console.log("in chose user block")
             $("#yourCharacter").append(this);
             user = ($("#yourCharacter img").attr("data-name"));
             $("#message").html("You have chosen " + user + "!!!  Please select your opponent.");   
@@ -215,8 +227,7 @@ $(document).ready(function() {
             userChosen = true;
         }
         else if(userChosen){
-
-            console.log(this);
+            console.log("in chose enemy block");
             $("#opponent").append(this);
             enemy = ($("#opponent img").attr("data-name"));
             console.log(this);
@@ -227,49 +238,22 @@ $(document).ready(function() {
             $("#message").html("You have chosen " + enemy + " as your enemy!!!  Please hit the attack button to start the fight.")
             // debugger;
             if(!fightBtnbool){
-                var fightBtn = $("<button>");
-                fightBtn.text("Attack");
-                $("#fightSection").append(fightBtn);
+                console.log("in fight button bool block")
+                $("#fightSection button").removeClass("invisible");
                 fightBtnbool = true;
             }
-        } 
-        console.log("user chosen? " + userChosen);
-        console.log("enemy chosen?: " + enemyChosen)
-        if(userChosen && enemyChosen){
-            $("#fightSection button").on("click", function(){ 
-            // $(document).on("click", "#fightSection button", function(event){
-                // debugger;
-                $("#message").html("You attack " + enemy + " for " + ($("#yourCharacter img").attr("data-ap")) + "!!!  " +
-                 enemy + " counter attacks you for  " + ($("#opponent img").attr("data-cap")) + "!!!");
-                console.log($("#opponent img").attr("data-name") + " hp: " + $("#opponent img").attr("data-hp"));
-                opponentHP = parseInt($("#opponent img").attr("data-hp") - parseInt($("#yourCharacter img").attr("data-ap")));
-                $("#opponent img").attr("data-hp", opponentHP);
-                userHp = parseInt($("#yourCharacter img").attr("data-hp") - parseInt($("#opponent img").attr("data-cap")));
-                $("#yourCharacter img").attr("data-hp", userHp);
-                console.log("opponent hp after hit: " + opponentHP);
-                console.log("User hp: " + userHp);
-                newAp = (parseInt($("#yourCharacter img").attr("data-ap")) + baseAp);
-                $("#yourCharacter img").attr("data-ap", $("#yourCharacter img").attr("data-ap") + baseAp);
-                console.log("User newAp: " + newAp);
-                $("#yourCharacter img").attr("data-ap", newAp);
-
-                if (counter === btnArr.length - 1){
-                    $("#opponent").empty();
-                    $("#message").html("You have defeated all enemies!!!")
-
-                }
-                else if (opponentHP <= 0 && enemyChosen === true && counter !== btnArr.length){
-                    console.log("in clear opponent block");
-                    $("#message").html("You have defeated " + ($("#opponent img").attr("data-name")) + "!!!  Please select your next opponent.");       
-                    $("#opponent").empty();
-                    enemyChosen = false; 
-                    return;  
-                }
-            })
-
+            else{
+                return 0;
+            }
         }
 
-    })
+        console.log("user chosen? " + userChosen);
+        console.log("enemy chosen?: " + enemyChosen)
 
-    // reset();
+        if(userChosen && enemyChosen){
+            $("#fightSection button").on("click", function(){
+                attack();                    
+            })
+        }
+    })
 });
