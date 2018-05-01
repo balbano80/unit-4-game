@@ -49,7 +49,7 @@ var characterArr =[
     },
 
     obj5 = {
-        name: "Fire Gang",
+        name: "Firey",
         hp: 52,
         ap: 6,
         cap: 7,
@@ -59,136 +59,104 @@ var characterArr =[
 ];
 
 $(document).ready(function() {
+  
+    function reset(){
+        console.log("in reset block");
+        // $("#characters").empty();
+        // $("#yourCharacter").empty();
+        // $("#opponent").empty();
+        // $("#enemies").empty();
+        // userChosen = false;
+        // enemyChosen = false;
+        // fightBtnbool = false;
+        // baseAp = 0;
+        // newAp =0;
+        // counter = 0;
+        // opponentHP = 1;
+        // userHp =1;
 
-    sarahBtn = $("<img>");
-    sarahBtn.addClass("characterBtn");
-    sarahBtn.attr("data-name", obj1.name);
-    sarahBtn.attr("data-hp", obj1.hp);
-    sarahBtn.attr("data-ap", obj1.ap);
-    sarahBtn.attr("data-cap", obj1.cap);
-    sarahBtn.attr("src", "assets/images/sarah.jpg");
-    sarahBtn.html("obj1.ap");
-    $("#characters").append(sarahBtn);
+        $("#playAgain button").addClass("invisible");
+        $("#fightSection button").addClass("invisible");
+        $("#message").html("Select the character you would like to play.....");
+        $("#charDiv").append("<div class='col-md-12' id='characters'>");
 
-
-    // var charHp = $("<p class='caption'>");
-    // console.log($(sarahBtn).attr("hp"));
-    // charHp.append($(sarahBtn).attr("data-hp"));
-    // console.log(charHp);
-
-    jarethBtn = $("<img>");
-    jarethBtn.addClass("characterBtn");
-    jarethBtn.attr("data-name", obj2.name);
-    jarethBtn.attr("data-hp", obj2.hp);
-    jarethBtn.attr("data-ap", obj2.ap);
-    jarethBtn.attr("data-cap", obj2.cap);
-    jarethBtn.attr("src", "assets/images/jareth2.jpg");
-    $("#characters").append(jarethBtn);
-
-
-    hoggleBtn = $("<img>");
-    hoggleBtn.addClass("characterBtn");
-    hoggleBtn.attr("data-name", obj3.name);
-    hoggleBtn.attr("data-hp", obj3.hp);
-    hoggleBtn.attr("data-ap", obj3.ap);
-    hoggleBtn.attr("data-cap", obj3.cap);
-    hoggleBtn.attr("src", "assets/images/hoggle2.jpg");
-    $("#characters").append(hoggleBtn);
-
-
-    blutoBtn = $("<img>");
-    blutoBtn.addClass("characterBtn");
-    blutoBtn.attr("data-name", obj4.name);
-    blutoBtn.attr("data-hp", obj4.hp);
-    blutoBtn.attr("data-ap", obj4.ap);
-    blutoBtn.attr("data-cap", obj4.cap);
-    blutoBtn.attr("src", "assets/images/bluto2.jpg");
-    $("#characters").append(blutoBtn);
-
-
-    fireGangBtn = $("<img>");
-    fireGangBtn.addClass("characterBtn");
-    fireGangBtn.attr("data-name", obj5.name);
-    fireGangBtn.attr("data-hp", obj5.hp);
-    fireGangBtn.attr("data-ap", obj5.ap);
-    fireGangBtn.attr("data-cap", obj5.cap);
-    fireGangBtn.attr("src", "assets/images/fireGang2.jpg");
-    $("#characters").append(fireGangBtn);
-
-
+        sarahBtn = $("<div>");
+        sarahBtn.addClass("characterBtn");
+        sarahBtn.text(characterArr[0].name);
+        sarahBtn.attr("data-name", obj1.name);
+        sarahBtn.attr("data-hp", obj1.hp);
+        sarahBtn.attr("data-ap", obj1.ap);
+        sarahBtn.attr("data-cap", obj1.cap);
+        sarahBtn.append("<img src='assets/images/sarah.jpg' alt='Sarah image'>");
+        sarahBtn.append("<p id='health'><b>Health Points: " + characterArr[0].hp + "<b><p>");   
+        $("#characters").append(sarahBtn);
     
+        jarethBtn = $("<div>");
+        jarethBtn.addClass("characterBtn");
+        jarethBtn.text(characterArr[1].name);
+        jarethBtn.attr("data-name", obj2.name);
+        jarethBtn.attr("data-hp", obj2.hp);
+        jarethBtn.attr("data-ap", obj2.ap);
+        jarethBtn.attr("data-cap", obj2.cap);
+        jarethBtn.append("<img src='assets/images/jareth2.jpg' alt=Jareth image'>");
+        jarethBtn.append("<p id='health'><b>Health Points: " + characterArr[1].hp + "<b><p>"); 
+        $("#characters").append(jarethBtn);
+    
+    
+        hoggleBtn = $("<div>");
+        hoggleBtn.addClass("characterBtn");
+        hoggleBtn.text(characterArr[2].name);
+        hoggleBtn.attr("data-name", obj3.name);
+        hoggleBtn.attr("data-hp", obj3.hp);
+        hoggleBtn.attr("data-ap", obj3.ap);
+        hoggleBtn.attr("data-cap", obj3.cap);
+        hoggleBtn.append("<img src='assets/images/hoggle2.jpg' alt='Hoggle image'>");
+        hoggleBtn.append("<p id='health'><b>Health Points: " + characterArr[2].hp + "<b><p>"); 
+        $("#characters").append(hoggleBtn);
+    
+    
+        blutoBtn = $("<div>");
+        blutoBtn.addClass("characterBtn");
+        blutoBtn.text(characterArr[3].name);
+        blutoBtn.attr("data-name", obj4.name);
+        blutoBtn.attr("data-hp", obj4.hp);
+        blutoBtn.attr("data-ap", obj4.ap);
+        blutoBtn.attr("data-cap", obj4.cap);
+        blutoBtn.append("<img src='assets/images/bluto2.jpg' alt='Bluto image'>");
+        blutoBtn.append("<p id='health'><b>Health Points: " + characterArr[3].hp + "<b><p>"); 
+        $("#characters").append(blutoBtn);
+    
+    
+        fireGangBtn = $("<div>");
+        fireGangBtn.addClass("characterBtn");
+        fireGangBtn.text(characterArr[4].name);
+        fireGangBtn.attr("data-name", obj5.name);
+        fireGangBtn.attr("data-hp", obj5.hp);
+        fireGangBtn.attr("data-ap", obj5.ap);
+        fireGangBtn.attr("data-cap", obj5.cap);
+        fireGangBtn.append("<img src='assets/images/fireGang2.jpg' alt='Fire Gang image'>");
+        fireGangBtn.append("<p id='health'><b>Health Points: " + characterArr[4].hp + "<b><p>"); 
+        $("#characters").append(fireGangBtn);  
+        return;
+    }
 
-    // function reset(){
-    //     // for(var i =0; i < characterArr.length; i++){
-    //     //     var characterBtn = $("<button>");
-
-    //     //     characterBtn.addClass("characterBtn");
-    //     //     characterBtn.attr("hp", characterArr[i].hp);
-    //     //     characterBtn.attr("ap", characterArr[i].ap);
-    //     //     characterBtn.attr("cap", characterArr[i].cap);
-    //     //     $("#characters").append(characterBtn);
-    //     //     console.log(characterBtn);
-    //     // } Try to find a way to create buttons with loop
-    //     sarahBtn = $("<button>");
-    //     sarahBtn.addClass("characterBtn sarah sarahBg");
-    //     sarahBtn.attr("hp", sarah.hp);
-    //     sarahBtn.attr("ap", sarah.ap);
-    //     sarahBtn.attr("cap", sarah.cap);
-    //     $("#characters").append(sarahBtn);
-    
-    //     jarethBtn = $("<button>");
-    //     jarethBtn.addClass("characterBtn jareth jarethBg");
-    //     jarethBtn.attr("hp", jareth.hp);
-    //     jarethBtn.attr("ap", jareth.ap);
-    //     sarahBtn.attr("cap", jareth.cap);
-    //     $("#characters").append(jarethBtn);
-    
-    //     hoggleBtn = $("<button>");
-    //     hoggleBtn.addClass("characterBtn hoggle hoggleBg");
-    //     hoggleBtn.attr("hp", hoggle.hp);
-    //     hoggleBtn.attr("ap", hoggle.ap);
-    //     hoggleBtn.attr("cap", hoggle.cap);
-    //     $("#characters").append(hoggleBtn);
-    
-    //     blutoBtn = $("<button>");
-    //     blutoBtn.addClass("characterBtn bluto blutoBg");
-    //     blutoBtn.attr("hp", bluto.hp);
-    //     blutoBtn.attr("ap", bluto.ap);
-    //     blutoBtn.attr("cap", bluto.cap);
-    //     $("#characters").append(blutoBtn);
-    
-    //     fireGangBtn = $("<button>");
-    //     fireGangBtn.addClass("characterBtn fireGang fireGangBg");
-    //     fireGangBtn.attr("hp", fireGang.hp);
-    //     fireGangBtn.attr("ap", fireGang.ap);
-    //     fireGangBtn.attr("cap", fireGang.cap);
-    //     $("#characters").append(fireGangBtn);
-
-    //     $("#yourCharacter, #enemies, #opponent, #message").empty();       
-    
-    // }
-
-    // function characterSelect(userChosen, enemyChosen){
-    // }
-    
-    // function enemySelect(){  
-    // } // will make clicked character to be user enemy and move it to the enemy div
-    
     function attack(){
         console.log("in attack block");
-        $("#message").html("You attack " + enemy + " for " + ($("#yourCharacter img").attr("data-ap")) + "!!!  " +
-        enemy + " counter attacks you for  " + ($("#opponent img").attr("data-cap")) + "!!!");
-        console.log($("#opponent img").attr("data-name") + " hp: " + $("#opponent img").attr("data-hp"));
-        opponentHP = parseInt($("#opponent img").attr("data-hp") - parseInt($("#yourCharacter img").attr("data-ap")));
-        $("#opponent img").attr("data-hp", opponentHP);
-        userHp = parseInt($("#yourCharacter img").attr("data-hp") - parseInt($("#opponent img").attr("data-cap")));
-        $("#yourCharacter img").attr("data-hp", userHp);
+        $("#message").html("You attack " + enemy + " for " + ($("#yourCharacter .characterBtn").attr("data-ap")) + "!!!  " +
+        enemy + " counter attacks you for  " + ($("#opponent .characterBtn").attr("data-cap")) + "!!!");
+        console.log($("#opponent .characterBtn").attr("data-name") + " hp: " + $("#opponent .characterBtn").attr("data-hp"));
+        opponentHP = parseInt($("#opponent .characterBtn").attr("data-hp") - parseInt($("#yourCharacter .characterBtn").attr("data-ap")));
+        $("#opponent .characterBtn").attr("data-hp", opponentHP);
+        $("#opponent #health").text("Health Points: " + opponentHP);
+        userHp = parseInt($("#yourCharacter .characterBtn").attr("data-hp") - parseInt($("#opponent .characterBtn").attr("data-cap")));
+        $("#yourCharacter .characterBtn").attr("data-hp", userHp);
+        $("#yourCharacter #health").text("Health Points: " + userHp);
         console.log("opponent hp after hit: " + opponentHP);
         console.log("User hp: " + userHp);
-        newAp = (parseInt($("#yourCharacter img").attr("data-ap")) + baseAp);
-        $("#yourCharacter img").attr("data-ap", $("#yourCharacter img").attr("data-ap") + baseAp);
+        newAp = (parseInt($("#yourCharacter .characterBtn").attr("data-ap")) + baseAp);
+        $("#yourCharacter .characterBtn").attr("data-ap", $("#yourCharacter .characterBtn").attr("data-ap") + baseAp);
         console.log("User newAp: " + newAp);
-        $("#yourCharacter img").attr("data-ap", newAp);
+        $("#yourCharacter .characterBtn").attr("data-ap", newAp);
         checkHealth(); 
     }
     
@@ -197,42 +165,63 @@ $(document).ready(function() {
             console.log("in overall loss block")
             $("#yourCharacter").empty();
             $("#message").html("You have been defeated by " + enemy + "!!!")
+            $("#playAgain button").removeClass("invisible");
+            $("#playAgain button").on("click", function() {
+                reset();
+            });
             return;
         }
         else if(counter === characterArr.length - 1){
             console.log("in overall win block");
             $("#opponent").empty();
             $("#message").html("You have defeated all enemies!!!")
+            $("#playAgain button").removeClass("invisible");
+            // $("#playAgain button").on("click", function() {
+            //     $("#characters").empty();
+            //     $("#yourCharacter").empty();
+            //     $("#opponent .characterBtn").empty();
+            //     $("#enemies #characters").empty();
+            //     userChosen = false;
+            //     enemyChosen = false;
+            //     fightBtnbool = false;
+            //     baseAp = 0;
+            //     newAp =0;
+            //     counter = 0;
+            //     opponentHP = 1;
+            //     userHp =1;
+            //     reset();
+            // });
             return;
         }
         else if (opponentHP <= 0){
             console.log("in clear opponent block");
-            $("#message").html("You have defeated " + ($("#opponent img").attr("data-name")) + "!!!  Please select your next opponent.");       
+            $("#message").html("You have defeated " + ($("#opponent .characterBtn").attr("data-name")) + "!!!  Please select your next opponent.");    
             $("#opponent").empty();
             enemyChosen = false; 
         } 
     }
 
+    reset();
+    
     $(".characterBtn").on("click", function() {
-        // charSelect();
         if(userChosen && enemyChosen){
             return;
         }
         else if(!userChosen){
-            console.log("in chose user block")
+            console.log("in choose user block")
             $("#yourCharacter").append(this);
-            user = ($("#yourCharacter img").attr("data-name"));
+            user = ($("#yourCharacter .characterBtn").attr("data-name"));
             $("#message").html("You have chosen " + user + "!!!  Please select your opponent.");   
-            baseAp = parseInt($("#yourCharacter img").attr("data-ap"));
+            baseAp = parseInt($("#yourCharacter .characterBtn").attr("data-ap"));
             userChosen = true;
         }
         else if(userChosen){
             console.log("in chose enemy block");
             $("#opponent").append(this);
-            enemy = ($("#opponent img").attr("data-name"));
+            enemy = ($("#opponent .characterBtn").attr("data-name"));
             console.log(this);
             counter++;
-            opponentHP = parseInt($("#opponent img").attr("data-hp"));
+            opponentHP = parseInt($("#opponent").attr("data-hp"));
             enemyChosen = true;
             $("#characters").appendTo("#enemies");
             $("#message").html("You have chosen " + enemy + " as your enemy!!!  Please hit the attack button to start the fight.")
@@ -256,4 +245,5 @@ $(document).ready(function() {
             })
         }
     })
+
 });

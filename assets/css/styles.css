@@ -9,7 +9,7 @@ body{
 }
 
 .header{
-    height: 150px;;
+    height: 120px;;
 }
 h1{
     color:#ffd780;
@@ -20,6 +20,7 @@ h1{
 
 h2{
     color:#ffd780;
+    font-weight: bold;
 }
 
 .characters{
@@ -27,25 +28,33 @@ h2{
 }
 
 .characterBtn{
-    position: relative;
     width: 200px;
     height: 200px;
     border: 2px solid white;
-    padding: 2px;
+    /* padding: 2px; */
     float: left;
-    margin: 2px;
+    /* margin: 2px; */
     text-align: center;
+    color:#ffd780;
+    font-weight: bold;
+    font-size: 20px;
+    background: black;
 }
 
-.caption{
-    top: 20px;
-    position: absolute;
-    color: black;
+.characterBtn img{
+    height: 70%;
+    width: 100%;
+    position: relative;
 }
-
+.characterBtn p{
+    font-size: 17px;
+}
 
 #message{
-    color: brown;
+    background: black;
+    text-align: center;
+    color:#ffd780;
     font-size: 30px;
     border: 2px dotted white;
 }
+
