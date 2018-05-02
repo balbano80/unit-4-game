@@ -19,7 +19,7 @@ var characterArr =[
      obj1 ={
         name: "Sarah",  
         hp: 50,
-        ap: 5,
+        ap: 7,
         cap: 7,
         image: "assets/images/sarah.jpg"
     },
@@ -27,7 +27,7 @@ var characterArr =[
      obj2 = {
         name: "Jareth",
         hp: 60,
-        ap: 8,
+        ap: 9,
         cap: 6,
         image: "../images/jareth.jpg"
     },
@@ -35,24 +35,24 @@ var characterArr =[
     obj3 = {
         name: "Hoggle",
         hp: 54,
-        ap: 4,
-        cap: 5,
+        ap: 7,
+        cap: 4,
         image: "../images/hoggle.jpg"
     },
 
     obj4 = {
         name: "Bluto",
         hp: 58,
-        ap: 7,
-        cap: 8,
+        ap: 8,
+        cap: 6,
         image: "../images/bluto.jpg"
     },
 
     obj5 = {
         name: "Firey",
         hp: 52,
-        ap: 6,
-        cap: 7,
+        ap: 8,
+        cap: 6,
         image: "../images/fireGang.jpg"
     }
 
@@ -165,16 +165,18 @@ $(document).ready(function() {
             console.log("in overall loss block")
             $("#yourCharacter").empty();
             $("#message").html("You have been defeated by " + enemy + "!!!")
+            $(".vid").append("<audio autoplay src='assets/images/womp-womp.mp3'>");
             $("#playAgain button").removeClass("invisible");
-            $("#playAgain button").on("click", function() {
-                reset();
-            });
+            // $("#playAgain button").on("click", function() {
+            //     reset();
+            // });
             return;
         }
         else if(counter === characterArr.length - 1){
             console.log("in overall win block");
             $("#opponent").empty();
-            $("#message").html("You have defeated all enemies!!!")
+            $("#message").html("Congratulations.... You have defeated all enemies!!!")
+            $(".vid").append("<iframe src='https://www.youtube.com/embed/ZvyNOg4jSRg?autoplay=1' frameborder='0 allow='encrypted-media' allowfullscreen></iframe>");
             $("#playAgain button").removeClass("invisible");
             // $("#playAgain button").on("click", function() {
             //     $("#characters").empty();
@@ -191,6 +193,7 @@ $(document).ready(function() {
             //     userHp =1;
             //     reset();
             // });
+ 
             return;
         }
         else if (opponentHP <= 0){
@@ -202,7 +205,7 @@ $(document).ready(function() {
     }
 
     reset();
-    
+
     $(".characterBtn").on("click", function() {
         if(userChosen && enemyChosen){
             return;

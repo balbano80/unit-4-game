@@ -23,6 +23,12 @@ h2{
     font-weight: bold;
 }
 
+iframe{
+    width: 620px;
+    height: 360px;
+    border: 1px solid white;
+}
+
 .characters{
     height: 50px;
 }
